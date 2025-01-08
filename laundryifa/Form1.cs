@@ -15,6 +15,13 @@ namespace laundryifa
         public Form1()
         {
             InitializeComponent();
+
+            tampildata();
+        }
+
+        private void tampildata()
+        {
+            throw new NotImplementedException();
         }
     }
 }
