@@ -1,0 +1,12 @@
+D:\Project\laundryifa\laundryifa\bin\Debug\laundryifa.exe.config
+D:\Project\laundryifa\laundryifa\bin\Debug\laundryifa.exe
+D:\Project\laundryifa\laundryifa\bin\Debug\laundryifa.pdb
+D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.csproj.AssemblyReference.cache
+D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.csproj.SuggestedBindingRedirects.cache
+D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.login.resources
+D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.Properties.Resources.resources
+D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.utama.resources
+D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.csproj.GenerateResource.cache
+D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.csproj.CoreCompileInputs.cache
+D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.exe
+D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.pdb
