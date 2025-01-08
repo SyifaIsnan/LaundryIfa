@@ -10,3 +10,4 @@ D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.csproj.GenerateResource.ca
 D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.csproj.CoreCompileInputs.cache
 D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.exe
 D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.pdb
+D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.order.resources

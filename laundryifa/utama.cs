@@ -29,6 +29,35 @@ namespace laundryifa
 
         private void lOGINToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            login login = new login();
+            login.Show();
+            this.Hide();
+        }
+
+        private void lOGOUTToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var mess = MessageBox.Show("Apakah anda yakin ingin logout?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (mess == DialogResult.Yes)
+            {
+                this.Hide();
+                login login = new login();
+                login.Show();
+                
+            }
+        }
+
+        private void eXITToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var mess = MessageBox.Show("Apakah anda yakin ingin keluar dari aplikasi?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (mess == DialogResult.Yes)
+            {
+                this.Close();
+
+            }
+        }
+
+        private void oRDERToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
         }
     }

@@ -77,6 +77,7 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(54, 176);
             this.textBox2.Name = "textBox2";
+            this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(217, 20);
             this.textBox2.TabIndex = 4;
             // 
@@ -98,6 +99,7 @@
             this.checkBox1.TabIndex = 6;
             this.checkBox1.Text = "Lihat password";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // login
             // 

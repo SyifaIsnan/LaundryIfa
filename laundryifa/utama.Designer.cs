@@ -56,7 +56,7 @@
             this.rEPORTToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1290, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -82,12 +82,14 @@
             this.lOGOUTToolStripMenuItem.Name = "lOGOUTToolStripMenuItem";
             this.lOGOUTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.lOGOUTToolStripMenuItem.Text = "LOGOUT";
+            this.lOGOUTToolStripMenuItem.Click += new System.EventHandler(this.lOGOUTToolStripMenuItem_Click);
             // 
             // eXITToolStripMenuItem
             // 
             this.eXITToolStripMenuItem.Name = "eXITToolStripMenuItem";
             this.eXITToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.eXITToolStripMenuItem.Text = "EXIT";
+            this.eXITToolStripMenuItem.Click += new System.EventHandler(this.eXITToolStripMenuItem_Click);
             // 
             // dATAToolStripMenuItem
             // 
@@ -142,8 +144,9 @@
             // oRDERToolStripMenuItem
             // 
             this.oRDERToolStripMenuItem.Name = "oRDERToolStripMenuItem";
-            this.oRDERToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.oRDERToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.oRDERToolStripMenuItem.Text = "ORDER";
+            this.oRDERToolStripMenuItem.Click += new System.EventHandler(this.oRDERToolStripMenuItem_Click);
             // 
             // dETAILORDERToolStripMenuItem
             // 
@@ -161,7 +164,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1290, 600);
             this.Controls.Add(this.menuStrip1);
             this.Name = "utama";
             this.Text = "Form1";

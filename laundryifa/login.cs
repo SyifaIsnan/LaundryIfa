@@ -45,9 +45,11 @@ namespace laundryifa
                     SqlDataReader dr = cmd.ExecuteReader();
                     if (dr.Read())
                     {
+                        this.Hide();
                         string namauser = dr["namauser"].ToString();
                         utama utama = new utama(namauser) ;
                         utama.Show();
+                        
                     } else
                     {
                         MessageBox.Show("User tidak ditemukan!");
@@ -58,6 +60,18 @@ namespace laundryifa
             } catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                textBox2.PasswordChar = '\0';
+            }
+            else
+            {
+                textBox2.PasswordChar = '*';
             }
         }
     }
