@@ -107,6 +107,7 @@
             this.pETUGASToolStripMenuItem.Name = "pETUGASToolStripMenuItem";
             this.pETUGASToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.pETUGASToolStripMenuItem.Text = "PETUGAS";
+            this.pETUGASToolStripMenuItem.Click += new System.EventHandler(this.pETUGASToolStripMenuItem_Click);
             // 
             // pELANGGANToolStripMenuItem
             // 

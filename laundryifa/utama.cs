@@ -60,5 +60,11 @@ namespace laundryifa
         {
 
         }
+
+        private void pETUGASToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            petugas pt = new petugas();
+            pt.Show();
+        }
     }
 }
