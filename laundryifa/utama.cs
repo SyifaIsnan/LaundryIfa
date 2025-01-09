@@ -58,7 +58,8 @@ namespace laundryifa
 
         private void oRDERToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            order order = new order();
+            order.Show();
         }
 
         private void pETUGASToolStripMenuItem_Click(object sender, EventArgs e)
@@ -77,6 +78,18 @@ namespace laundryifa
         {
             layanan an = new layanan();
             an.Show();
+        }
+
+        private void uSERToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            user user = new user();
+            user.Show();
+        }
+
+        private void bIAYATAMBAHANToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            biayatambahan bt = new biayatambahan();
+            bt.Show();
         }
     }
 }

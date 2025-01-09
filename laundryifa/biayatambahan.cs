@@ -8,12 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace laundryifa
 {
-    public partial class user : Form
+    public partial class biayatambahan : Form
     {
-        public user()
+        public biayatambahan()
         {
             InitializeComponent();
             tampildata();
@@ -23,7 +24,7 @@ namespace laundryifa
 
         private void tampildata()
         {
-            SqlCommand cmd = new SqlCommand("select * from [user]", conn);
+            SqlCommand cmd = new SqlCommand("select * from [biayatambahan]", conn);
             cmd.CommandType = CommandType.Text;
             conn.Open();
             DataTable dt = new DataTable();
@@ -31,7 +32,15 @@ namespace laundryifa
             dt.Load(dr);
             conn.Close();
             dataGridView1.DataSource = dt;
+            dataGridView1.Columns["biaya"].DefaultCellStyle.Format = "C";
+            dataGridView1.Columns["biaya"].DefaultCellStyle.FormatProvider = new System.Globalization.CultureInfo("id-ID");
+        }
 
+        
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            richTextBox1.Text = dataGridView1.CurrentRow.Cells["keterangan"].Value.ToString();
+            textBox2.Text = dataGridView1.CurrentRow.Cells["biaya"].Value.ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -40,47 +49,37 @@ namespace laundryifa
             {
                 if (Properti.validasi(this.Controls))
                 {
-                    MessageBox.Show("Data tidak boleh kosong!");
+                    MessageBox.Show("Data yang ingin diinput tidak boleh kosong!");
+
                 }
                 else
                 {
-                    var mess = MessageBox.Show("Apakah data yang ingin ditambahkan sudah betul?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (mess == DialogResult.Yes) 
+                    var mess = MessageBox.Show("Apakah data yang ingin ditambahkan sudah betul?", "Question", MessageBoxButtons.YesNo);
+                    if (mess == DialogResult.Yes)
                     {
-                        SqlCommand cmd = new SqlCommand("insert into [user] values (@namauser, @email, @password)", conn);
+                        SqlCommand cmd = new SqlCommand("insert into [biayatambahan] values (@keterangan, @biaya)", conn);
                         cmd.CommandType = CommandType.Text;
                         conn.Open();
-                        cmd.Parameters.AddWithValue("@namauser", textBox1.Text);
-                        cmd.Parameters.AddWithValue("@email", textBox2.Text);
-                        cmd.Parameters.AddWithValue("@password", textBox3.Text);
+                        cmd.Parameters.AddWithValue("@keterangan", richTextBox1.Text);
+                        cmd.Parameters.AddWithValue("@biaya", textBox2.Text);
                         cmd.ExecuteNonQuery();
                         conn.Close();
                         MessageBox.Show("Data berhasil ditambahkan!");
                         tampildata();
                         clear();
-
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Data gagal ditambahkan!", ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void clear()
         {
-            textBox1.Text = string.Empty;   
+            richTextBox1.Text = string.Empty;
             textBox2.Text = string.Empty;
-            textBox3.Text = string.Empty;
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            textBox1.Text = dataGridView1.CurrentRow.Cells["namauser"].Value.ToString();
-            textBox2.Text = dataGridView1.CurrentRow.Cells["email"].Value.ToString();
-            textBox3.Text = dataGridView1.CurrentRow.Cells["password"].Value.ToString();
-
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -89,34 +88,33 @@ namespace laundryifa
             {
                 if (Properti.validasi(this.Controls))
                 {
-                    MessageBox.Show("Data tidak boleh kosong!");
+                    MessageBox.Show("Data yang ingin diinput tidak boleh kosong!");
+
                 }
                 else
                 {
-                    var mess = MessageBox.Show("Apakah data yang ingin diubah sudah betul?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    var mess = MessageBox.Show("Apakah data yang ingin diubah sudah betul?", "Question", MessageBoxButtons.YesNo);
                     if (mess == DialogResult.Yes)
                     {
                         var row = dataGridView1.CurrentRow;
-                        int kodeuser = Convert.ToInt32(row.Cells["kodeuser"].Value.ToString());
-                        SqlCommand cmd = new SqlCommand("update [user] set namauser=@namauser, email=@email, password=@password where kodeuser=@kodeuser", conn);
+                        int kodebiaya = Convert.ToInt32(row.Cells["kodebiaya"].Value.ToString());
+                        SqlCommand cmd = new SqlCommand("update [biayatambahan] set keterangan=@keterangan, biaya=@biaya where kodebiaya=@kodebiaya", conn);
                         cmd.CommandType = CommandType.Text;
                         conn.Open();
-                        cmd.Parameters.AddWithValue("kodeuser", kodeuser);
-                        cmd.Parameters.AddWithValue("@namauser", textBox1.Text);
-                        cmd.Parameters.AddWithValue("@email", textBox2.Text);
-                        cmd.Parameters.AddWithValue("@password", textBox3.Text);
+                        cmd.Parameters.AddWithValue("@kodebiaya", kodebiaya);
+                        cmd.Parameters.AddWithValue("@keterangan", richTextBox1.Text);
+                        cmd.Parameters.AddWithValue("@biaya", textBox2.Text);
                         cmd.ExecuteNonQuery();
                         conn.Close();
                         MessageBox.Show("Data berhasil diubah!");
                         tampildata();
                         clear();
-
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Data gagal diubah!", ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -126,37 +124,32 @@ namespace laundryifa
             {
                 if (Properti.validasi(this.Controls))
                 {
-                    MessageBox.Show("Data tidak boleh kosong!");
+                    MessageBox.Show("Data yang ingin diinput tidak boleh kosong!");
+
                 }
                 else
                 {
-                    var mess = MessageBox.Show("Apakah data yang ingin dihapus sudah betul?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    var mess = MessageBox.Show("Apakah data yang ingin dihapus sudah betul?", "Question", MessageBoxButtons.YesNo);
                     if (mess == DialogResult.Yes)
                     {
                         var row = dataGridView1.CurrentRow;
-                        int kodeuser = Convert.ToInt32(row.Cells["kodeuser"].Value.ToString());
-                        SqlCommand cmd = new SqlCommand("delete from [user] where kodeuser=@kodeuser", conn);
+                        int kodebiaya = Convert.ToInt32(row.Cells["kodebiaya"].Value.ToString());
+                        SqlCommand cmd = new SqlCommand("delete from [biayatambahan] where kodebiaya=@kodebiaya", conn);
                         cmd.CommandType = CommandType.Text;
                         conn.Open();
-                        cmd.Parameters.AddWithValue("kodeuser", kodeuser);
+                        cmd.Parameters.AddWithValue("@kodebiaya", kodebiaya);
                         cmd.ExecuteNonQuery();
                         conn.Close();
                         MessageBox.Show("Data berhasil dihapus!");
                         tampildata();
                         clear();
-
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Data gagal dihapus!", ex.Message);
+                MessageBox.Show(ex.Message);
             }
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            clear();
         }
     }
 }

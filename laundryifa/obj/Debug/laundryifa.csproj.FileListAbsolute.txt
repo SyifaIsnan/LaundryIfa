@@ -15,3 +15,4 @@ D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.petugas.resources
 D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.pelanggan.resources
 D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.layanan.resources
 D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.user.resources
+D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.biayatambahan.resources

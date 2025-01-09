@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="biayatambahan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="biayatambahan.Designer.cs">
+      <DependentUpon>biayatambahan.cs</DependentUpon>
+    </Compile>
     <Compile Include="layanan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +97,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properti.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="biayatambahan.resx">
+      <DependentUpon>biayatambahan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="layanan.resx">
       <DependentUpon>layanan.cs</DependentUpon>
     </EmbeddedResource>

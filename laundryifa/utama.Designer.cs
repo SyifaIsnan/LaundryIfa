@@ -128,12 +128,14 @@
             this.uSERToolStripMenuItem.Name = "uSERToolStripMenuItem";
             this.uSERToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.uSERToolStripMenuItem.Text = "USER";
+            this.uSERToolStripMenuItem.Click += new System.EventHandler(this.uSERToolStripMenuItem_Click);
             // 
             // bIAYATAMBAHANToolStripMenuItem
             // 
             this.bIAYATAMBAHANToolStripMenuItem.Name = "bIAYATAMBAHANToolStripMenuItem";
             this.bIAYATAMBAHANToolStripMenuItem.Size = new System.Drawing.Size(118, 20);
             this.bIAYATAMBAHANToolStripMenuItem.Text = "BIAYA TAMBAHAN";
+            this.bIAYATAMBAHANToolStripMenuItem.Click += new System.EventHandler(this.bIAYATAMBAHANToolStripMenuItem_Click);
             // 
             // tRANSACTIONToolStripMenuItem
             // 
