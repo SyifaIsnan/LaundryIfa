@@ -66,5 +66,17 @@ namespace laundryifa
             petugas pt = new petugas();
             pt.Show();
         }
+
+        private void pELANGGANToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pelanggan pl = new pelanggan();
+            pl.Show();
+        }
+
+        private void lAYANANToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            layanan an = new layanan();
+            an.Show();
+        }
     }
 }

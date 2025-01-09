@@ -73,21 +73,21 @@
             // lOGINToolStripMenuItem
             // 
             this.lOGINToolStripMenuItem.Name = "lOGINToolStripMenuItem";
-            this.lOGINToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.lOGINToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.lOGINToolStripMenuItem.Text = "LOGIN";
             this.lOGINToolStripMenuItem.Click += new System.EventHandler(this.lOGINToolStripMenuItem_Click);
             // 
             // lOGOUTToolStripMenuItem
             // 
             this.lOGOUTToolStripMenuItem.Name = "lOGOUTToolStripMenuItem";
-            this.lOGOUTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.lOGOUTToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.lOGOUTToolStripMenuItem.Text = "LOGOUT";
             this.lOGOUTToolStripMenuItem.Click += new System.EventHandler(this.lOGOUTToolStripMenuItem_Click);
             // 
             // eXITToolStripMenuItem
             // 
             this.eXITToolStripMenuItem.Name = "eXITToolStripMenuItem";
-            this.eXITToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eXITToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.eXITToolStripMenuItem.Text = "EXIT";
             this.eXITToolStripMenuItem.Click += new System.EventHandler(this.eXITToolStripMenuItem_Click);
             // 
@@ -114,12 +114,14 @@
             this.pELANGGANToolStripMenuItem.Name = "pELANGGANToolStripMenuItem";
             this.pELANGGANToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.pELANGGANToolStripMenuItem.Text = "PELANGGAN";
+            this.pELANGGANToolStripMenuItem.Click += new System.EventHandler(this.pELANGGANToolStripMenuItem_Click);
             // 
             // lAYANANToolStripMenuItem
             // 
             this.lAYANANToolStripMenuItem.Name = "lAYANANToolStripMenuItem";
             this.lAYANANToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.lAYANANToolStripMenuItem.Text = "LAYANAN";
+            this.lAYANANToolStripMenuItem.Click += new System.EventHandler(this.lAYANANToolStripMenuItem_Click);
             // 
             // uSERToolStripMenuItem
             // 
@@ -145,7 +147,7 @@
             // oRDERToolStripMenuItem
             // 
             this.oRDERToolStripMenuItem.Name = "oRDERToolStripMenuItem";
-            this.oRDERToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.oRDERToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.oRDERToolStripMenuItem.Text = "ORDER";
             this.oRDERToolStripMenuItem.Click += new System.EventHandler(this.oRDERToolStripMenuItem_Click);
             // 

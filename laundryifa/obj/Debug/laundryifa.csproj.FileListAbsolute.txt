@@ -12,3 +12,6 @@ D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.exe
 D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.pdb
 D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.order.resources
 D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.petugas.resources
+D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.pelanggan.resources
+D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.layanan.resources
+D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.user.resources

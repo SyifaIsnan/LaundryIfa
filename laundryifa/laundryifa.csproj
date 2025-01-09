@@ -46,17 +46,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="layanan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="layanan.Designer.cs">
+      <DependentUpon>layanan.cs</DependentUpon>
+    </Compile>
     <Compile Include="order.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="order.Designer.cs">
       <DependentUpon>order.cs</DependentUpon>
     </Compile>
+    <Compile Include="pelanggan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pelanggan.Designer.cs">
+      <DependentUpon>pelanggan.cs</DependentUpon>
+    </Compile>
     <Compile Include="petugas.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="petugas.Designer.cs">
       <DependentUpon>petugas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="user.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="user.Designer.cs">
+      <DependentUpon>user.cs</DependentUpon>
     </Compile>
     <Compile Include="utama.cs">
       <SubType>Form</SubType>
@@ -73,11 +91,17 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properti.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="layanan.resx">
+      <DependentUpon>layanan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="login.resx">
       <DependentUpon>login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="order.resx">
       <DependentUpon>order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pelanggan.resx">
+      <DependentUpon>pelanggan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="petugas.resx">
       <DependentUpon>petugas.cs</DependentUpon>
@@ -91,6 +115,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="user.resx">
+      <DependentUpon>user.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="utama.resx">
       <DependentUpon>utama.cs</DependentUpon>
     </EmbeddedResource>

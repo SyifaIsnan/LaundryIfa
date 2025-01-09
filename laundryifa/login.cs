@@ -41,7 +41,7 @@ namespace laundryifa
                     cmd.CommandType = CommandType.Text;
                     conn.Open();
                     cmd.Parameters.AddWithValue("@email", textBox1.Text);
-                    cmd.Parameters.AddWithValue("@password", textBox2.Text);
+                    cmd.Parameters.AddWithValue("@password", Properti.enkripsi(textBox2.Text));
                     SqlDataReader dr = cmd.ExecuteReader();
                     if (dr.Read())
                     {
