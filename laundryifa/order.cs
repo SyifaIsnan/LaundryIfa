@@ -108,29 +108,12 @@ namespace laundryifa
 
         private void DataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            if (e.Control is ComboBox comboBox)
-            {
-                comboBox.SelectedIndexChanged -= ComboBox_SelectedIndexChanged;
-                comboBox.SelectedIndexChanged += ComboBox_SelectedIndexChanged;
-            }
+            
         }
 
         private void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ComboBox comboBox = (ComboBox)sender;
-            var row = dataGridView1.CurrentRow;
-            int kodeorder = Convert.ToInt32(row.Cells["kodeorder"].Value.ToString());
-            string status = comboBox.SelectedItem.ToString();
-
-            SqlCommand cmd = new SqlCommand("UPDATE [Order] SET statusorder = @statusorder WHERE kodeorder = @kodeorder ", conn);
-            cmd.CommandType = CommandType.Text;
-            conn.Open();
-            cmd.Parameters.AddWithValue("@kodeorder", kodeorder);
-            cmd.Parameters.AddWithValue("@statusorder", status);
-            cmd.ExecuteNonQuery();
-            conn.Close();
-            tampildata();
-            MessageBox.Show("Data berhasil diubah", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+           
         }
 
         SqlConnection conn = Properti.conn;
@@ -235,6 +218,11 @@ namespace laundryifa
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
 
         }
