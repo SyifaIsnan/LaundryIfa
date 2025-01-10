@@ -9,14 +9,128 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace laundryifa
 {
     public partial class order : Form
     {
+        
+
         public order()
         {
             InitializeComponent();
+            tampildata();
+            textBox4.Text = "0";
+            textBox5.Text = "0";
+            textBox6.Text = "0";
+            textBox7.Text = "0";
+            textBox6.ReadOnly = true;
+            textBox7.ReadOnly = true;
+            textBox4.ReadOnly = true;
+            textBox5.ReadOnly = true;
+            petugas();
+        }
+
+        private void petugas()
+        {
+            SqlCommand cmd = new SqlCommand("SELECT kodepetugas ,namapetugas FROM PetugasAntar", conn);
+            cmd.CommandType = CommandType.Text;
+            conn.Open();
+            DataTable dt = new DataTable();
+            SqlDataReader dr = cmd.ExecuteReader();
+            dt.Load(dr);
+            comboBox2.DataSource = dt;
+            comboBox2.DisplayMember = "namapetugas";
+            comboBox2.ValueMember = "kodepetugas";
+            comboBox2.SelectedIndex = -1;
+            conn.Close();
+        }
+
+        private void tampildata()
+        {
+            SqlCommand cmd = new SqlCommand("SELECT * FROM [Order]", conn);
+            cmd.CommandType = CommandType.Text;
+            conn.Open();
+            DataTable dt = new DataTable();
+            SqlDataReader dr = cmd.ExecuteReader();
+            dt.Load(dr);
+            conn.Close();
+            dataGridView1.Columns.Clear();
+            dataGridView1.Rows.Clear();
+            if (dt.Rows.Count > 0)
+            {
+                DataGridViewComboBoxColumn combo = new DataGridViewComboBoxColumn();
+                combo.Name = "Status";
+                combo.DataSource = new string[] { "PENDING", "DICUCI", "DIANTAR/DIJEMPUT" };
+                combo.HeaderText = "Status";
+                combo.DataPropertyName = "Status";
+
+                DataGridViewLinkColumn link = new DataGridViewLinkColumn();
+                link.Name = "Pilih Layanan";
+                link.Text = "Pilih Layanan";
+                link.HeaderText = "Pilih Layanan";
+                link.UseColumnTextForLinkValue = true;
+
+                dataGridView1.Columns.Add("kodeorder", "kodeorder");
+                dataGridView1.Columns.Add("nomortelepon", "nomortelepon");
+                dataGridView1.Columns.Add("tanggalorder", "tanggalorder");
+                dataGridView1.Columns.Add("tanggalselesai", "tanggalselesai");
+                dataGridView1.Columns.Add("biayaantar", "biayaantar");
+                dataGridView1.Columns.Add("biayajemput", "biayajemput");
+                dataGridView1.Columns.Add("biayahari", "biayahari");
+                dataGridView1.Columns.Add("petugasantar", "petugasantar");
+                dataGridView1.Columns.Add(combo);
+                dataGridView1.Columns.Add(link);
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    dataGridView1.Rows.Add(
+                        row["kodeorder"],
+                        row["nomortelepon"],
+                        row["tanggalorder"],
+                        row["tanggalselesai"],
+                        row["biayaantar"],
+                        row["biayajemput"],
+                        row["biayahari"],
+                        row["petugasantar"],
+                        row["statusorder"]
+                    );
+                    dataGridView1.EditingControlShowing += DataGridView1_EditingControlShowing;
+                }
+                 
+
+
+
+            }
+
+        }
+
+        private void DataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (e.Control is ComboBox comboBox)
+            {
+                comboBox.SelectedIndexChanged -= ComboBox_SelectedIndexChanged;
+                comboBox.SelectedIndexChanged += ComboBox_SelectedIndexChanged;
+            }
+        }
+
+        private void ComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+            var row = dataGridView1.CurrentRow;
+            int kodeorder = Convert.ToInt32(row.Cells["kodeorder"].Value.ToString());
+            string status = comboBox.SelectedItem.ToString();
+
+            SqlCommand cmd = new SqlCommand("UPDATE [Order] SET statusorder = @statusorder WHERE kodeorder = @kodeorder ", conn);
+            cmd.CommandType = CommandType.Text;
+            conn.Open();
+            cmd.Parameters.AddWithValue("@kodeorder", kodeorder);
+            cmd.Parameters.AddWithValue("@statusorder", status);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            tampildata();
+            MessageBox.Show("Data berhasil diubah", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         SqlConnection conn = Properti.conn;
@@ -62,18 +176,18 @@ namespace laundryifa
 
         private void hitungtotal()
         {
-            int hari = Convert.ToInt32(textBox4.Text);
-            int jemput = Convert.ToInt32(textBox6.Text);
-            int antar = Convert.ToInt32(textBox7.Text);
-            int total = hari + jemput + antar;
+            int jemput = Convert.ToInt32(textBox4.Text);
+            int antar = Convert.ToInt32(textBox6.Text);
+            int hari = Convert.ToInt32(textBox7.Text);
 
+            int total = jemput + antar + hari;
             textBox5.Text = total.ToString("C", CultureInfo.GetCultureInfo("id-ID"));
 
         }
-
+                 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
