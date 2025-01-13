@@ -403,7 +403,7 @@ namespace laundryifa
                     }
                     else if (checkBox2.Checked)
                     {
-                        cmd.Parameters.AddWithValue("@petugasantar", comboBox2.SelectedValue);
+                        cmd.Parameters.AddWithValue("@petugasantar", comboBox2.SelectedItem);
                     }
                     cmd.Parameters.AddWithValue("@statusorder", "PENDING");
                     cmd.ExecuteNonQuery();
@@ -489,6 +489,7 @@ namespace laundryifa
             checkBox2.Checked = false;
             dateTimePicker1.Value = DateTime.Now;
             dateTimePicker2.Value = DateTime.Now;
+            comboBox2.SelectedItem = null;
         }
 
         private void button2_Click(object sender, EventArgs e)
