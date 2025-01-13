@@ -148,6 +148,7 @@ namespace laundryifa
                 textBox4.Text = "0";
             }
             conn.Close();
+
             hitungtotal();
 
 
