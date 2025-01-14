@@ -26,11 +26,11 @@ namespace laundryifa
             return sb.ToString();
         }
 
-        public static bool validasi(Control.ControlCollection container)
+        public static bool validasi(Control.ControlCollection container, TextBoxBase kosong = null)
         {
             foreach (Control c in container)
             {
-                if (c is TextBoxBase textBox && string.IsNullOrWhiteSpace(textBox.Text))
+                if (c is TextBoxBase textBox && string.IsNullOrWhiteSpace(textBox.Text) && textBox != kosong)
                 {
                     return true;
                 }

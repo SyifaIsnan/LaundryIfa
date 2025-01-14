@@ -16,7 +16,6 @@ namespace laundryifa
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new utama("namauser"));
-        }
+            Application.Run(new order());        }
     }
 }

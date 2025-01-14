@@ -30,8 +30,8 @@ namespace laundryifa
             textBox4.ReadOnly = true;
             textBox5.ReadOnly = true;
             SqlCommand cmd = new SqlCommand("SELECT kodepetugas ,namapetugas FROM PetugasAntar", conn);
-            cmd.CommandType = CommandType.Text;
             conn.Open();
+            cmd.CommandType = CommandType.Text;           
             DataTable dt = new DataTable();
             SqlDataReader dr = cmd.ExecuteReader();
             dt.Load(dr);
@@ -186,7 +186,52 @@ namespace laundryifa
                 dt.Load(dr);
                 conn.Close();
 
-                
+                dataGridView1.Columns.Clear();
+                dataGridView1.Rows.Clear();
+                if (dt.Rows.Count > 0)
+                {
+                    DataGridViewComboBoxColumn combo = new DataGridViewComboBoxColumn();
+                    combo.Name = "Status";
+                    combo.DataSource = new string[] { "PENDING", "DICUCI", "DIANTAR/DIJEMPUT" };
+                    combo.HeaderText = "Status";
+                    combo.DataPropertyName = "Status";
+
+                    DataGridViewLinkColumn link = new DataGridViewLinkColumn();
+                    link.Name = "Pilih Layanan";
+                    link.Text = "Pilih Layanan";
+                    link.HeaderText = "Pilih Layanan";
+                    link.UseColumnTextForLinkValue = true;
+
+                    dataGridView1.Columns.Add("kodeorder", "kodeorder");
+                    dataGridView1.Columns.Add("nomortelepon", "nomortelepon");
+                    dataGridView1.Columns.Add("tanggalorder", "tanggalorder");
+                    dataGridView1.Columns.Add("tanggalselesai", "tanggalselesai");
+                    dataGridView1.Columns.Add("biayaantar", "biayaantar");
+                    dataGridView1.Columns.Add("biayajemput", "biayajemput");
+                    dataGridView1.Columns.Add("biayahari", "biayahari");
+                    dataGridView1.Columns.Add("petugasantar", "petugasantar");
+                    dataGridView1.Columns.Add(combo);
+                    dataGridView1.Columns.Add(link);
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        int rowIndex = dataGridView1.Rows.Add();
+                        dataGridView1.Rows[rowIndex].Cells["kodeorder"].Value = row["kodeorder"].ToString();
+                        dataGridView1.Rows[rowIndex].Cells["nomortelepon"].Value = row["nomortelepon"].ToString();
+                        dataGridView1.Rows[rowIndex].Cells["tanggalorder"].Value = row["tanggalorder"].ToString();
+                        dataGridView1.Rows[rowIndex].Cells["tanggalselesai"].Value = row["tanggalselesai"].ToString();
+                        dataGridView1.Rows[rowIndex].Cells["biayaantar"].Value = row["biayaantar"].ToString();
+                        dataGridView1.Rows[rowIndex].Cells["biayajemput"].Value = row["biayajemput"].ToString();
+                        dataGridView1.Rows[rowIndex].Cells["biayahari"].Value = row["biayahari"].ToString();
+                        dataGridView1.Rows[rowIndex].Cells["petugasantar"].Value = row["petugasantar"].ToString();
+                        dataGridView1.Rows[rowIndex].Cells["Status"].Value = row["statusorder"].ToString();
+
+
+                        dataGridView1.EditingControlShowing += DataGridView1_EditingControlShowing;
+                    }
+
+                }
+
 
             }
             else
@@ -286,8 +331,8 @@ namespace laundryifa
             }
             else
             {
-                textBox5.Text = "0";
-                label13.Enabled = false;
+                textBox7.Text = "0";
+                label8.Enabled = false;
                 comboBox2.Enabled = false;
             }
             conn.Close();
@@ -305,7 +350,7 @@ namespace laundryifa
             try
             {
 
-                if (Properti.validasi(this.Controls))
+                if (Properti.validasi(this.Controls, textBox8))
                 {
                     MessageBox.Show("Inputan tidak boleh kosong", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -352,7 +397,7 @@ namespace laundryifa
                     }
                     else if (checkBox2.Checked)
                     {
-                        cmd.Parameters.AddWithValue("@petugasantar", comboBox2.SelectedItem);
+                        cmd.Parameters.AddWithValue("@petugasantar", comboBox2.SelectedValue);
                     }
                     cmd.Parameters.AddWithValue("@statusorder", "PENDING");
                     cmd.ExecuteNonQuery();
@@ -445,16 +490,7 @@ namespace laundryifa
         {
             try
             {
-                if (Properti.validasi(this.Controls))
-                {
-                    MessageBox.Show("Inputan tidak boleh kosong!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else if (checkBox1.Checked == false || checkBox2.Checked==false)
-                {
-                    MessageBox.Show("Pilih ingin diantar atau dijemput", "Information", MessageBoxButtons.OK);
-                }
-                else
-                {
+                
                     SqlCommand pelanggan = new SqlCommand("select count(*) from [pelanggan] where nomortelepon = @nomortelepon", conn);
                     pelanggan.CommandType = CommandType.Text;
                     conn.Open();
@@ -474,7 +510,7 @@ namespace laundryifa
 
                     var row = dataGridView1.CurrentRow.Cells;
                     int kodeorder = Convert.ToInt32(row["kodeorder"].Value.ToString());
-                    SqlCommand cmd = new SqlCommand("update [Order] set nomortelepon=@nomortelepon, tanggalorder=@tanggalorder, tanggalselesai=@tanggalselesai, biayaantar=@biayaantar, biayajemput=@biayajemput, biayahari=@biayahari, petugasantar=@petugasantar, statusorder=@statusorder where kodeorder=@kodeorder", conn);
+                    SqlCommand cmd = new SqlCommand("update [Order] set nomortelepon=@nomortelepon, tanggalorder=@tanggalorder, tanggalselesai=@tanggalselesai, biayaantar=@biayaantar, biayajemput=@biayajemput, biayahari=@biayahari, petugasantar=@petugasantar where kodeorder=@kodeorder", conn);
                     cmd.CommandType = CommandType.Text;
                     conn.Open();
                     cmd.Parameters.AddWithValue("@kodeorder", kodeorder);
@@ -492,7 +528,7 @@ namespace laundryifa
                     clear();
                     hitungtotal();
 
-                }
+                
             }
             catch (Exception ex)
             {
@@ -522,7 +558,12 @@ namespace laundryifa
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            var row = dataGridView1.CurrentRow;
+            string kodeorder = row.Cells["kodeorder"].Value.ToString();
 
+            Detailorder d = new Detailorder(kodeorder);
+            d.Show();
+            this.Hide();
         }
 
         private void button4_Click(object sender, EventArgs e)
