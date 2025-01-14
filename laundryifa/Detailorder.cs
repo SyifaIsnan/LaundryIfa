@@ -72,20 +72,8 @@ namespace laundryifa
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex == -1)
-            {
-                SqlCommand cmd = new SqlCommand("select biaya from [layanan] where kodelayanan=@kodelayanan", conn);
-                cmd.CommandType = CommandType.Text;
-                conn.Open();
-                cmd.Parameters.AddWithValue("@kodelayanan", comboBox1.SelectedValue);
-                SqlDataReader dr = cmd.ExecuteReader();
-                if (dr.Read())
-                {
-                    textBox1.Text = dr["biaya"].ToString();
-                }
-                conn.Close();
-
-            }
+            
+            
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -29,6 +29,7 @@ namespace laundryifa
             textBox7.ReadOnly = true;
             textBox4.ReadOnly = true;
             textBox5.ReadOnly = true;
+
             SqlCommand cmd = new SqlCommand("SELECT kodepetugas ,namapetugas FROM PetugasAntar", conn);
             conn.Open();
             cmd.CommandType = CommandType.Text;           
@@ -196,11 +197,14 @@ namespace laundryifa
                     combo.HeaderText = "Status";
                     combo.DataPropertyName = "Status";
 
+                   
+
                     DataGridViewLinkColumn link = new DataGridViewLinkColumn();
                     link.Name = "Pilih Layanan";
                     link.Text = "Pilih Layanan";
                     link.HeaderText = "Pilih Layanan";
                     link.UseColumnTextForLinkValue = true;
+                    
 
                     dataGridView1.Columns.Add("kodeorder", "kodeorder");
                     dataGridView1.Columns.Add("nomortelepon", "nomortelepon");
@@ -391,14 +395,7 @@ namespace laundryifa
                     cmd.Parameters.AddWithValue("@biayaantar", textBox7.Text);
                     cmd.Parameters.AddWithValue("@biayajemput", textBox6.Text);
                     cmd.Parameters.AddWithValue("@biayahari", textBox4.Text);
-                    if (checkBox1.Checked)
-                    {
-                        cmd.Parameters.AddWithValue("@petugasantar", "-");
-                    }
-                    else if (checkBox2.Checked)
-                    {
-                        cmd.Parameters.AddWithValue("@petugasantar", comboBox2.SelectedValue);
-                    }
+                    cmd.Parameters.AddWithValue("@petugasantar", comboBox2.SelectedValue);
                     cmd.Parameters.AddWithValue("@statusorder", "PENDING");
                     cmd.ExecuteNonQuery();
                     conn.Close();
@@ -406,9 +403,8 @@ namespace laundryifa
                     tampildata();
                     MessageBox.Show("Data berhasil ditambahkan", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     clear();
-
                 }
-            }
+            } 
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -558,12 +554,16 @@ namespace laundryifa
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var row = dataGridView1.CurrentRow;
-            string kodeorder = row.Cells["kodeorder"].Value.ToString();
+            if (e.ColumnIndex == 9 && e.RowIndex >= 0) 
+            {
+                var row = dataGridView1.CurrentRow;
+                string kodeorder = row.Cells["kodeorder"].Value.ToString();
 
-            Detailorder d = new Detailorder(kodeorder);
-            d.Show();
-            this.Hide();
+                Detailorder d = new Detailorder(kodeorder);
+                d.Show();
+                this.Hide();
+            }
+
         }
 
         private void button4_Click(object sender, EventArgs e)
