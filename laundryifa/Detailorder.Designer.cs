@@ -162,6 +162,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Detailorder";
             this.Text = "Detailorder";
+            this.Load += new System.EventHandler(this.Detailorder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

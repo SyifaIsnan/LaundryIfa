@@ -58,8 +58,9 @@ namespace laundryifa
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var row = dataGridView1.CurrentRow.Cells;
-            comboBox1.Text = row["namalayanan"].Value.ToString();
+            comboBox1.Text = row["kodelayanan"].Value.ToString();
             textBox1.Text = row["biaya"].Value.ToString();
+            numericUpDown1.Value  = Convert.ToInt32(row["jumlahunit"].Value.ToString());
 
         }
 
@@ -72,24 +73,55 @@ namespace laundryifa
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-            
+            if (comboBox1.SelectedIndex != -1)
+            {
+                SqlCommand cmd = new SqlCommand("SELECT biaya FROM Layanan WHERE kodelayanan = @kodelayanan", conn);
+                cmd.CommandType = CommandType.Text;
+
+                try
+                {
+
+                    conn.Open();
+                    cmd.Parameters.AddWithValue("@kodelayanan", comboBox1.SelectedValue);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        textBox1.Text = dr["biaya"].ToString();
+                    }
+                    dr.Close();
+                    
+                    
+                } catch
+                {
+                    conn.Close();
+                }
+               
+            }
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SqlCommand cmd = new SqlCommand("INSERT INTO Detailorder VALUES(@kodeorder,@kodelayanan,@jumlahunit,@biaya)", conn);
-            cmd.CommandType = CommandType.Text;
-            conn.Open();
-            cmd.Parameters.AddWithValue("@kodeorder", kodeorder);
-            cmd.Parameters.AddWithValue("@kodelayanan", comboBox1.SelectedValue);
-            cmd.Parameters.AddWithValue("@jumlahunit", numericUpDown1.Value);
-            cmd.Parameters.AddWithValue("@biaya", textBox1.Text);
-            cmd.ExecuteNonQuery();
-            conn.Close();
-            tampildata();
-            MessageBox.Show("Data berhasil ditambahkan", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            clear();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("INSERT INTO Detailorder VALUES(@kodeorder,@kodelayanan,@jumlahunit,@biaya)", conn);
+                cmd.CommandType = CommandType.Text;
+                conn.Open();
+                cmd.Parameters.AddWithValue("@kodeorder", kodeorder);
+                cmd.Parameters.AddWithValue("@kodelayanan", comboBox1.SelectedValue);
+                cmd.Parameters.AddWithValue("@jumlahunit", numericUpDown1.Value);
+                cmd.Parameters.AddWithValue("@biaya", textBox1.Text);
+                cmd.ExecuteNonQuery();
+                
+
+            } catch
+            {
+                conn.Close();
+                tampildata();
+                MessageBox.Show("Data berhasil ditambahkan", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                clear();
+
+            }
         }
 
         private void clear()
@@ -101,20 +133,31 @@ namespace laundryifa
 
         private void button3_Click(object sender, EventArgs e)
         {
-            var row = dataGridView1.CurrentRow;
-            int kodeorder = Convert.ToInt32(row.Cells["kodeorder"].Value.ToString());
-            SqlCommand cmd = new SqlCommand("UPDATE Detailorder SET kodeorder = @kodeorder, kodelayanan = @kodelayanan, jumlahunit = @jumlahunit , biaya = @biaya WHERE kodeorder= @kodeorder", conn);
-            cmd.CommandType = CommandType.Text;
-            conn.Open();
-            cmd.Parameters.AddWithValue("@kodeorder", kodeorder);
-            cmd.Parameters.AddWithValue("@kodelayanan", comboBox1.SelectedValue);
-            cmd.Parameters.AddWithValue("@jumlahunit", numericUpDown1.Value);
-            cmd.Parameters.AddWithValue("@biaya", textBox1.Text);
-            cmd.ExecuteNonQuery();
-            conn.Close();
-            tampildata();
-            MessageBox.Show("Data berhasil diubah", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            clear();
+            try
+            {
+                var row = dataGridView1.CurrentRow;
+                int kodeorder = Convert.ToInt32(row.Cells["kodeorder"].Value.ToString());
+                SqlCommand cmd = new SqlCommand("UPDATE Detailorder SET kodelayanan = @kodelayanan, jumlahunit = @jumlahunit , biaya = @biaya WHERE kodeorder= @kodeorder", conn);
+                cmd.CommandType = CommandType.Text;
+                conn.Open();
+                cmd.Parameters.AddWithValue("@kodeorder", kodeorder);
+                cmd.Parameters.AddWithValue("@kodelayanan", comboBox1.SelectedValue);
+                cmd.Parameters.AddWithValue("@jumlahunit", numericUpDown1.Value);
+                cmd.Parameters.AddWithValue("@biaya", textBox1.Text);
+                cmd.ExecuteNonQuery();
+                
+            } catch
+            {
+                conn.Close();
+                tampildata();
+                MessageBox.Show("Data berhasil diubah", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                clear();
+            }
+        }
+
+        private void Detailorder_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
