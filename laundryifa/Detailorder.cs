@@ -152,7 +152,7 @@ namespace laundryifa
                 tampildata();
                 MessageBox.Show("Data berhasil diubah", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 clear();
-            }
+            } 
         }
 
         private void Detailorder_Load(object sender, EventArgs e)

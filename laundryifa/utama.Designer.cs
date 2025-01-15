@@ -69,25 +69,26 @@
             this.hOMEToolStripMenuItem.Name = "hOMEToolStripMenuItem";
             this.hOMEToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.hOMEToolStripMenuItem.Text = "HOME";
+            this.hOMEToolStripMenuItem.Click += new System.EventHandler(this.hOMEToolStripMenuItem_Click);
             // 
             // lOGINToolStripMenuItem
             // 
             this.lOGINToolStripMenuItem.Name = "lOGINToolStripMenuItem";
-            this.lOGINToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.lOGINToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.lOGINToolStripMenuItem.Text = "LOGIN";
             this.lOGINToolStripMenuItem.Click += new System.EventHandler(this.lOGINToolStripMenuItem_Click);
             // 
             // lOGOUTToolStripMenuItem
             // 
             this.lOGOUTToolStripMenuItem.Name = "lOGOUTToolStripMenuItem";
-            this.lOGOUTToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.lOGOUTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.lOGOUTToolStripMenuItem.Text = "LOGOUT";
             this.lOGOUTToolStripMenuItem.Click += new System.EventHandler(this.lOGOUTToolStripMenuItem_Click);
             // 
             // eXITToolStripMenuItem
             // 
             this.eXITToolStripMenuItem.Name = "eXITToolStripMenuItem";
-            this.eXITToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.eXITToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.eXITToolStripMenuItem.Text = "EXIT";
             this.eXITToolStripMenuItem.Click += new System.EventHandler(this.eXITToolStripMenuItem_Click);
             // 
@@ -105,28 +106,28 @@
             // pETUGASToolStripMenuItem
             // 
             this.pETUGASToolStripMenuItem.Name = "pETUGASToolStripMenuItem";
-            this.pETUGASToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pETUGASToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.pETUGASToolStripMenuItem.Text = "PETUGAS";
             this.pETUGASToolStripMenuItem.Click += new System.EventHandler(this.pETUGASToolStripMenuItem_Click);
             // 
             // pELANGGANToolStripMenuItem
             // 
             this.pELANGGANToolStripMenuItem.Name = "pELANGGANToolStripMenuItem";
-            this.pELANGGANToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pELANGGANToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.pELANGGANToolStripMenuItem.Text = "PELANGGAN";
             this.pELANGGANToolStripMenuItem.Click += new System.EventHandler(this.pELANGGANToolStripMenuItem_Click);
             // 
             // lAYANANToolStripMenuItem
             // 
             this.lAYANANToolStripMenuItem.Name = "lAYANANToolStripMenuItem";
-            this.lAYANANToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.lAYANANToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.lAYANANToolStripMenuItem.Text = "LAYANAN";
             this.lAYANANToolStripMenuItem.Click += new System.EventHandler(this.lAYANANToolStripMenuItem_Click);
             // 
             // uSERToolStripMenuItem
             // 
             this.uSERToolStripMenuItem.Name = "uSERToolStripMenuItem";
-            this.uSERToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.uSERToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.uSERToolStripMenuItem.Text = "USER";
             this.uSERToolStripMenuItem.Click += new System.EventHandler(this.uSERToolStripMenuItem_Click);
             // 
@@ -156,8 +157,9 @@
             // dETAILORDERToolStripMenuItem
             // 
             this.dETAILORDERToolStripMenuItem.Name = "dETAILORDERToolStripMenuItem";
-            this.dETAILORDERToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.dETAILORDERToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.dETAILORDERToolStripMenuItem.Text = "DETAILORDER";
+            this.dETAILORDERToolStripMenuItem.Click += new System.EventHandler(this.dETAILORDERToolStripMenuItem_Click);
             // 
             // rEPORTToolStripMenuItem
             // 

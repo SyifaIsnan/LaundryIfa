@@ -91,5 +91,17 @@ namespace laundryifa
             biayatambahan bt = new biayatambahan();
             bt.Show();
         }
+
+        private void hOMEToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dETAILORDERToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            datadetailorder dr = new datadetailorder();
+            dr.Show();
+
+        }
     }
 }

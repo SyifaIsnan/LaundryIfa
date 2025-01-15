@@ -17,3 +17,4 @@ D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.layanan.resources
 D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.user.resources
 D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.biayatambahan.resources
 D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.Detailorder.resources
+D:\Project\laundryifa\laundryifa\obj\Debug\laundryifa.datadetailorder.resources
