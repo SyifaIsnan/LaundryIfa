@@ -32,10 +32,10 @@ namespace laundryifa
 
             SqlCommand cmd = new SqlCommand("SELECT kodepetugas ,namapetugas FROM PetugasAntar", conn);
             conn.Open();
-            cmd.CommandType = CommandType.Text;           
+            cmd.CommandType = CommandType.Text;
             DataTable dt = new DataTable();
-            SqlDataReader dr = cmd.ExecuteReader();
-            dt.Load(dr);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
             comboBox2.DataSource = dt;
             comboBox2.DisplayMember = "namapetugas";
             comboBox2.ValueMember = "kodepetugas";
@@ -554,14 +554,12 @@ namespace laundryifa
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 9 && e.RowIndex >= 0) 
-            {
-                var row = dataGridView1.CurrentRow;
-                string kodeorder = row.Cells["kodeorder"].Value.ToString();
 
-                Detailorder d = new Detailorder(kodeorder);
-                d.Show();
-                this.Hide();
+            if (e.ColumnIndex == 9 && e.RowIndex >= 0)
+            {
+                string kodeorder = dataGridView1.Rows[e.RowIndex].Cells["kodeorder"].Value.ToString();
+                Detailorder dt = new Detailorder(kodeorder);
+                dt.ShowDialog();
             }
 
         }

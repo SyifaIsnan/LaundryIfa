@@ -17,21 +17,21 @@ namespace laundryifa
         public Detailorder(string kodeorder)
         {
             InitializeComponent();
+            this.kodeorder = kodeorder;
             tampildata();
 
-            this.kodeorder = kodeorder;
-
-            SqlCommand cmd = new SqlCommand("select kodelayanan, namalayanan from [layanan] ", conn);
+            SqlCommand cmd = new SqlCommand("SELECT kodelayanan , namalayanan FROM Layanan", conn);
+            cmd.CommandType = CommandType.Text;
             conn.Open();
-            cmd.CommandType = CommandType.Text;  
             DataTable dt = new DataTable();
-            SqlDataReader dr = cmd.ExecuteReader();
-            dt.Load(dr);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            da.Fill(dt);
 
             comboBox1.DataSource = dt;
-            comboBox1.ValueMember = "kodelayanan";
             comboBox1.DisplayMember = "namalayanan";
+            comboBox1.ValueMember = "kodelayanan";
             comboBox1.SelectedIndex = -1;
+
             conn.Close();
         }
 
@@ -58,8 +58,7 @@ namespace laundryifa
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var row = dataGridView1.CurrentRow.Cells;
-            comboBox1.Text = row["kodelayanan"].Value.ToString();
-            textBox1.Text = row["biaya"].Value.ToString();
+            comboBox1.SelectedValue = row["kodelayanan"].Value.ToString();
             numericUpDown1.Value  = Convert.ToInt32(row["jumlahunit"].Value.ToString());
 
         }
@@ -73,14 +72,13 @@ namespace laundryifa
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex != -1)
+           if(comboBox1.SelectedIndex != -1)
             {
-                SqlCommand cmd = new SqlCommand("SELECT biaya FROM Layanan WHERE kodelayanan = @kodelayanan", conn);
-                cmd.CommandType = CommandType.Text;
 
                 try
                 {
-
+                    SqlCommand cmd = new SqlCommand("SELECT biaya FROM Layanan WHERE kodelayanan = @kodelayanan", conn);
+                    cmd.CommandType = CommandType.Text;
                     conn.Open();
                     cmd.Parameters.AddWithValue("@kodelayanan", comboBox1.SelectedValue);
                     SqlDataReader dr = cmd.ExecuteReader();
@@ -88,14 +86,12 @@ namespace laundryifa
                     {
                         textBox1.Text = dr["biaya"].ToString();
                     }
-                    dr.Close();
-                    
-                    
-                } catch
+                } catch 
                 {
                     conn.Close();
                 }
-               
+                
+                
             }
 
         }
@@ -112,14 +108,14 @@ namespace laundryifa
                 cmd.Parameters.AddWithValue("@jumlahunit", numericUpDown1.Value);
                 cmd.Parameters.AddWithValue("@biaya", textBox1.Text);
                 cmd.ExecuteNonQuery();
-                
+                tampildata();
+                MessageBox.Show("Data berhasil ditambahkan", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                clear();
 
             } catch
             {
                 conn.Close();
-                tampildata();
-                MessageBox.Show("Data berhasil ditambahkan", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                clear();
+
 
             }
         }
@@ -137,7 +133,7 @@ namespace laundryifa
             {
                 var row = dataGridView1.CurrentRow;
                 int kodeorder = Convert.ToInt32(row.Cells["kodeorder"].Value.ToString());
-                SqlCommand cmd = new SqlCommand("UPDATE Detailorder SET kodelayanan = @kodelayanan, jumlahunit = @jumlahunit , biaya = @biaya WHERE kodeorder= @kodeorder", conn);
+                SqlCommand cmd = new SqlCommand("UPDATE Detailorder SET kodeorder=@kodeorder, kodelayanan = @kodelayanan, jumlahunit = @jumlahunit , biaya = @biaya WHERE kodeorder= @kodeorder", conn);
                 cmd.CommandType = CommandType.Text;
                 conn.Open();
                 cmd.Parameters.AddWithValue("@kodeorder", kodeorder);
