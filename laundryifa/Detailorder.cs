@@ -108,8 +108,9 @@ namespace laundryifa
                 cmd.Parameters.AddWithValue("@jumlahunit", numericUpDown1.Value);
                 cmd.Parameters.AddWithValue("@biaya", textBox1.Text);
                 cmd.ExecuteNonQuery();
-                tampildata();
+                
                 MessageBox.Show("Data berhasil ditambahkan", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                tampildata();
                 clear();
 
             } catch

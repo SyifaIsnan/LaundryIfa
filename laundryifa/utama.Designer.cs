@@ -74,21 +74,21 @@
             // lOGINToolStripMenuItem
             // 
             this.lOGINToolStripMenuItem.Name = "lOGINToolStripMenuItem";
-            this.lOGINToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.lOGINToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.lOGINToolStripMenuItem.Text = "LOGIN";
             this.lOGINToolStripMenuItem.Click += new System.EventHandler(this.lOGINToolStripMenuItem_Click);
             // 
             // lOGOUTToolStripMenuItem
             // 
             this.lOGOUTToolStripMenuItem.Name = "lOGOUTToolStripMenuItem";
-            this.lOGOUTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.lOGOUTToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.lOGOUTToolStripMenuItem.Text = "LOGOUT";
             this.lOGOUTToolStripMenuItem.Click += new System.EventHandler(this.lOGOUTToolStripMenuItem_Click);
             // 
             // eXITToolStripMenuItem
             // 
             this.eXITToolStripMenuItem.Name = "eXITToolStripMenuItem";
-            this.eXITToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eXITToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.eXITToolStripMenuItem.Text = "EXIT";
             this.eXITToolStripMenuItem.Click += new System.EventHandler(this.eXITToolStripMenuItem_Click);
             // 
@@ -157,7 +157,7 @@
             // dETAILORDERToolStripMenuItem
             // 
             this.dETAILORDERToolStripMenuItem.Name = "dETAILORDERToolStripMenuItem";
-            this.dETAILORDERToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dETAILORDERToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.dETAILORDERToolStripMenuItem.Text = "DETAILORDER";
             this.dETAILORDERToolStripMenuItem.Click += new System.EventHandler(this.dETAILORDERToolStripMenuItem_Click);
             // 
@@ -166,6 +166,7 @@
             this.rEPORTToolStripMenuItem.Name = "rEPORTToolStripMenuItem";
             this.rEPORTToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.rEPORTToolStripMenuItem.Text = "REPORT";
+            this.rEPORTToolStripMenuItem.Click += new System.EventHandler(this.rEPORTToolStripMenuItem_Click);
             // 
             // utama
             // 

@@ -103,5 +103,11 @@ namespace laundryifa
             dr.Show();
 
         }
+
+        private void rEPORTToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            report r = new report();
+            r.Show();
+        }
     }
 }
