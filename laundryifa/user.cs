@@ -60,7 +60,7 @@ namespace laundryifa
                         clear();
 
                     }
-                }
+                } conn.Close();
             }
             catch(Exception ex)
             {

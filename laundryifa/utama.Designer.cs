@@ -43,6 +43,7 @@
             this.oRDERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dETAILORDERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rEPORTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,7 +54,8 @@
             this.dATAToolStripMenuItem,
             this.bIAYATAMBAHANToolStripMenuItem,
             this.tRANSACTIONToolStripMenuItem,
-            this.rEPORTToolStripMenuItem});
+            this.rEPORTToolStripMenuItem,
+            this.toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1290, 24);
@@ -106,28 +108,28 @@
             // pETUGASToolStripMenuItem
             // 
             this.pETUGASToolStripMenuItem.Name = "pETUGASToolStripMenuItem";
-            this.pETUGASToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.pETUGASToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.pETUGASToolStripMenuItem.Text = "PETUGAS";
             this.pETUGASToolStripMenuItem.Click += new System.EventHandler(this.pETUGASToolStripMenuItem_Click);
             // 
             // pELANGGANToolStripMenuItem
             // 
             this.pELANGGANToolStripMenuItem.Name = "pELANGGANToolStripMenuItem";
-            this.pELANGGANToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.pELANGGANToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.pELANGGANToolStripMenuItem.Text = "PELANGGAN";
             this.pELANGGANToolStripMenuItem.Click += new System.EventHandler(this.pELANGGANToolStripMenuItem_Click);
             // 
             // lAYANANToolStripMenuItem
             // 
             this.lAYANANToolStripMenuItem.Name = "lAYANANToolStripMenuItem";
-            this.lAYANANToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.lAYANANToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.lAYANANToolStripMenuItem.Text = "LAYANAN";
             this.lAYANANToolStripMenuItem.Click += new System.EventHandler(this.lAYANANToolStripMenuItem_Click);
             // 
             // uSERToolStripMenuItem
             // 
             this.uSERToolStripMenuItem.Name = "uSERToolStripMenuItem";
-            this.uSERToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.uSERToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.uSERToolStripMenuItem.Text = "USER";
             this.uSERToolStripMenuItem.Click += new System.EventHandler(this.uSERToolStripMenuItem_Click);
             // 
@@ -168,6 +170,12 @@
             this.rEPORTToolStripMenuItem.Text = "REPORT";
             this.rEPORTToolStripMenuItem.Click += new System.EventHandler(this.rEPORTToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(22, 20);
+            this.toolStripMenuItem1.Text = " ";
+            // 
             // utama
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -200,5 +208,6 @@
         private System.Windows.Forms.ToolStripMenuItem oRDERToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dETAILORDERToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rEPORTToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }

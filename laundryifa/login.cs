@@ -45,7 +45,7 @@ namespace laundryifa
                     SqlDataReader dr = cmd.ExecuteReader();
                     if (dr.Read())
                     {
-                        this.Hide();
+                        this.Hide();    
                         string namauser = dr["namauser"].ToString();
                         utama utama = new utama(namauser) ;
                         utama.Show();

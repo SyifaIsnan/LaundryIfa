@@ -11,7 +11,9 @@ namespace laundryifa
 {
     internal class Properti
     {
-        public static SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-18L8S2S;Initial Catalog=LaundrySyifa;Integrated Security=True");
+        public static SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-18L8S2S;Initial Catalog=LaundrySyifa;Integrated Security=True;MultipleActiveResultSets=true");
+
+        public static SqlConnection getconn() { return new SqlConnection(@"Data Source=DESKTOP-18L8S2S;Initial Catalog=LaundrySyifa;Integrated Security=True;MultipleActiveResultSets=true"); }
 
         public static string enkripsi(string input)
         {
