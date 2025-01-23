@@ -34,7 +34,8 @@ namespace laundryifa
                 comboBox1.DataSource = dt;
                 comboBox1.DisplayMember = "namalayanan";
                 comboBox1.ValueMember = "kodelayanan";
-               
+                comboBox1.SelectedIndex = -1;
+                comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
 
                 conn.Close();
             }
@@ -82,80 +83,40 @@ namespace laundryifa
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-           
-
-
-            if (comboBox1.SelectedValue == null) return;
+            
 
                 using (var conn = Properti.getconn())
-            {
+                {
                     if (comboBox1.SelectedIndex != -1)
                     {
 
-                        try
+                    try
+                    {
+                        if (comboBox1.SelectedValue != null)
                         {
-
-                        var sel = comboBox1.SelectedValue;
-                        if (sel is DataRowView rowView)
-                        {
-                            int kodelayanan = Int32.Parse(rowView["kodelayanan"].ToString());
-
-
-
-                           // MessageBox.Show(comboBox1.SelectedText.ToString());
-
-                            //if(Int32.TryParse(comboBox1.SelectedValue.ToString(), out kodelayanan))
-                            //{
-                            //    MessageBox.Show("berhasil!");
-                            //}
-                            //else
-                            //{
-                            //    MessageBox.Show("gagal");
-                            //}
-                            SqlCommand cmd = new SqlCommand("SELECT biaya FROM Layanan WHERE kodelayanan = '" + kodelayanan + "'", conn);
-                            cmd.CommandType = CommandType.Text;
-                            conn.Open();
-
-                            // cmd.Parameters.AddWithValue("@kodelayanan", kodelayanan);
-                            //MessageBox.Show(cmd.CommandText);
-                            SqlDataReader dr = cmd.ExecuteReader();
-                            if (dr.Read())
+                            int kodelayanan;
+                            if (Int32.TryParse(comboBox1.SelectedValue.ToString(), out kodelayanan))
                             {
-                                textBox1.Text = dr["biaya"].ToString();
-                            }
-                            conn.Close();
+                                SqlCommand cmd = new SqlCommand("SELECT biaya FROM Layanan WHERE kodelayanan = @kodelayanan", conn);
+                                cmd.CommandType = CommandType.Text;
+                                cmd.Parameters.AddWithValue("@kodelayanan", kodelayanan);
 
+                                conn.Open();
+                                SqlDataReader dr = cmd.ExecuteReader();
+                                if (dr.Read())
+                                {
+                                    textBox1.Text = dr["biaya"].ToString();
+                                }
+                                conn.Close();
+                            }
+
+                            
                         }
                         else
                         {
-                            MessageBox.Show(comboBox1.SelectedValue.ToString());
-                            int kodelayanan = Int32.Parse(comboBox1.SelectedValue.ToString());
-
-
-
-                            // MessageBox.Show(comboBox1.SelectedText.ToString());
-
-                            //if(Int32.TryParse(comboBox1.SelectedValue.ToString(), out kodelayanan))
-                            //{
-                            //    MessageBox.Show("berhasil!");
-                            //}
-                            //else
-                            //{
-                            //    MessageBox.Show("gagal");
-                            //}
-                            SqlCommand cmd = new SqlCommand("SELECT biaya FROM Layanan WHERE kodelayanan = '" + kodelayanan + "'", conn);
-                            cmd.CommandType = CommandType.Text;
-                            conn.Open();
-
-                            // cmd.Parameters.AddWithValue("@kodelayanan", kodelayanan);
-                            //MessageBox.Show(cmd.CommandText);
-                            SqlDataReader dr = cmd.ExecuteReader();
-                            if (dr.Read())
-                            {
-                                textBox1.Text = dr["biaya"].ToString();
-                            }
-                            conn.Close();
+                            MessageBox.Show("Tidak ada nilai yang dipilih.");
                         }
+
                     }
                     catch (Exception ex)
                     {
@@ -178,7 +139,7 @@ namespace laundryifa
             {
                 try
                 {
-                    //conn.Open();
+                    conn.Open();
                     SqlCommand cmd = new SqlCommand("INSERT INTO Detailorder VALUES(@kodeorder,@kodelayanan,@jumlahunit,@biaya)", conn);
                     cmd.CommandType = CommandType.Text;
 
@@ -227,14 +188,14 @@ namespace laundryifa
                     cmd.Parameters.AddWithValue("@jumlahunit", numericUpDown1.Value);
                     cmd.Parameters.AddWithValue("@biaya", textBox1.Text);
                     cmd.ExecuteNonQuery();
-
+                    
+                    tampildata();
+                    MessageBox.Show("Data berhasil diubah", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    clear();
                 }
                 catch
                 {
                     conn.Close();
-                    tampildata();
-                    MessageBox.Show("Data berhasil diubah", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    clear();
                 }
             }
 
