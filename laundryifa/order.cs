@@ -232,6 +232,10 @@ namespace laundryifa
 
 
                         dataGridView1.EditingControlShowing += DataGridView1_EditingControlShowing;
+
+                       
+
+                        
                     }
 
                 }
@@ -444,9 +448,18 @@ namespace laundryifa
             {
                 checkBox1.Checked = true;
             }
-            else if (textBox7.Text != "0")
+            else
+            {
+                checkBox1.Checked = false;
+            }
+             
+            if (textBox7.Text != "0")
             {
                 checkBox2.Checked = true;
+            }
+            else
+            {
+                checkBox2.Checked = false;
             }
             hitungtotal();
 
@@ -584,6 +597,11 @@ namespace laundryifa
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void order_Load(object sender, EventArgs e)
         {
 
         }

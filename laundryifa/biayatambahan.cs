@@ -22,6 +22,8 @@ namespace laundryifa
 
         SqlConnection conn = Properti.conn;
 
+
+        // UNTUK MENAMPILKAN DATA KE DATAGRIDVIEW
         private void tampildata()
         {
             SqlCommand cmd = new SqlCommand("select * from [biayatambahan]", conn);
@@ -33,16 +35,18 @@ namespace laundryifa
             conn.Close();
             dataGridView1.DataSource = dt;
             dataGridView1.Columns["biaya"].DefaultCellStyle.Format = "C";
-            dataGridView1.Columns["biaya"].DefaultCellStyle.FormatProvider = new System.Globalization.CultureInfo("id-ID");
+            dataGridView1.Columns["biaya"].DefaultCellStyle.FormatProvider = new System.Globalization.CultureInfo("id-ID"); //INI UNTUK MENAMPILKAN RP. CONTOHNYA 5000, MENJADI RP.5000
         }
 
-        
+        // UNTUK MENAMPILKAN DATA DI PROPERTI MASING MASING SAAT DI KLIK SELL NYA
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             richTextBox1.Text = dataGridView1.CurrentRow.Cells["keterangan"].Value.ToString();
             textBox2.Text = dataGridView1.CurrentRow.Cells["biaya"].Value.ToString();
         }
 
+
+        // UNTUK MENAMBAH DATA
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -76,12 +80,16 @@ namespace laundryifa
             }
         }
 
+
+        // UNTUK MENGHAPUS DATA YANG ADA DI PROPERTI
         private void clear()
         {
             richTextBox1.Text = string.Empty;
             textBox2.Text = string.Empty;
         }
 
+
+        //UNTUK MENGUBAH DATA
         private void button2_Click(object sender, EventArgs e)
         {
             try

@@ -140,6 +140,7 @@ namespace laundryifa
             // 
             // comboBox2
             // 
+            this.comboBox2.Enabled = false;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(727, 276);
             this.comboBox2.Name = "comboBox2";
@@ -399,6 +400,7 @@ namespace laundryifa
             this.Controls.Add(this.textBox1);
             this.Name = "order";
             this.Text = "order";
+            this.Load += new System.EventHandler(this.order_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

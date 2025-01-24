@@ -15,6 +15,8 @@ namespace laundryifa
 
         public static SqlConnection getconn() { return new SqlConnection(@"Data Source=DESKTOP-18L8S2S;Initial Catalog=LaundrySyifa;Integrated Security=True;MultipleActiveResultSets=true"); }
 
+        
+
         public static string enkripsi(string input)
         {
             MD5 md5 = MD5.Create();
@@ -42,17 +44,15 @@ namespace laundryifa
 
         public static string enkripsii(string input)
         {
-            using (SHA256 sha256 = SHA256.Create())
+            MD5 MD5 = MD5.Create();
+            byte[] bytes = MD5.ComputeHash(Encoding.UTF8.GetBytes(input));
+            StringBuilder builder = new StringBuilder();
+            for (int i = 0;i < bytes.Length; i++)
             {
-                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(input));
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < bytes.Length; i++)
-                {
-                    sb.Append(bytes[i].ToString("x2")); // Mengubah byte ke format heksadesimal
-                }
-                return sb.ToString();
-            }
-        }
+                builder.Append(bytes[i].ToString("x2"));
+            } 
+            return builder.ToString();
+        } 
 
     }
 }
