@@ -66,7 +66,7 @@ namespace laundryifa
                 dataGridView1.Columns["namalayanan"].HeaderText = "Nama Layanan"; 
                 dataGridView1.Columns["jumlahunit"].HeaderText = "Jumlah Unit";
                 dataGridView1.Columns["biaya"].HeaderText = "Biaya";
-
+                
                
             }
         }

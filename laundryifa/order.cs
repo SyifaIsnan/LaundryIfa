@@ -40,6 +40,8 @@ namespace laundryifa
             comboBox2.DisplayMember = "namapetugas";
             comboBox2.ValueMember = "kodepetugas";
             comboBox2.SelectedIndex = -1;
+
+            
             conn.Close();
         }
 
