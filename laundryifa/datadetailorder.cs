@@ -47,7 +47,7 @@ namespace laundryifa
 
             using (var conn = Properti.getconn())
             {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Detailorder ", conn);
+                SqlCommand cmd = new SqlCommand("SELECT detailorder.kodeorder, layanan.namalayanan, detailorder.jumlahunit, detailorder.biaya FROM detailorder JOIN layanan ON detailorder.kodelayanan = layanan.kodelayanan", conn);
                 cmd.CommandType = CommandType.Text;
                 conn.Open();
                 DataTable dt = new DataTable();
@@ -59,9 +59,15 @@ namespace laundryifa
                 link.Name = "Cetak Nota";
                 link.HeaderText = "Cetak Nota";
                 link.UseColumnTextForLinkValue = true;
-
                 dataGridView1.DataSource = dt;
                 dataGridView1.Columns.Add(link);
+
+                dataGridView1.Columns["kodeorder"].HeaderText = "Kode Order";
+                dataGridView1.Columns["namalayanan"].HeaderText = "Nama Layanan"; 
+                dataGridView1.Columns["jumlahunit"].HeaderText = "Jumlah Unit";
+                dataGridView1.Columns["biaya"].HeaderText = "Biaya";
+
+               
             }
         }
 
@@ -71,7 +77,7 @@ namespace laundryifa
         {
 
             string kodeorder = dataGridView1.CurrentRow.Cells["kodeorder"].Value?.ToString();
-            string kodelayanan = dataGridView1.CurrentRow.Cells["kodelayanan"].Value?.ToString();
+            string kodelayanan = dataGridView1.CurrentRow.Cells["namalayanan"].Value?.ToString();
             string jumlahunit = dataGridView1.CurrentRow.Cells["jumlahunit"].Value?.ToString();
             string biaya = dataGridView1.CurrentRow.Cells["biaya"].Value?.ToString();
 
@@ -85,7 +91,7 @@ namespace laundryifa
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            comboBox1.SelectedValue = dataGridView1.CurrentRow.Cells["kodelayanan"].Value.ToString();
+            comboBox1.Text = dataGridView1.CurrentRow.Cells["namalayanan"].Value.ToString();
             numericUpDown1.Value = Convert.ToInt32(dataGridView1.CurrentRow.Cells["jumlahunit"].Value.ToString());
             textBox4.Text = dataGridView1.CurrentRow.Cells["biaya"].Value.ToString();
             textBox2.Text = dataGridView1.CurrentRow.Cells["kodeorder"].Value.ToString();

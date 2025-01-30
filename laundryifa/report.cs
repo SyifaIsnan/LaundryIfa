@@ -65,7 +65,7 @@ namespace laundryifa
         {
             string from = comboBox1.SelectedItem.ToString();
             string to = comboBox2.SelectedItem.ToString();
-            SqlCommand cmd = new SqlCommand("SELECT MONTH([Order].tanggalorder) AS 'Bulan', sum(jumlahunit*biaya) AS 'Income' FROM [Order] INNER JOIN Detailorder ON [Order].kodeorder = Detailorder.kodeorder WHERE tanggalorder >= @from AND tanggalorder <= @to GROUP BY MONTH(tanggalorder)", conn);
+            SqlCommand cmd = new SqlCommand("SELECT MONTH([Order].tanggalorder) AS 'Bulan', sum(jumlahunit*biaya) AS 'Income' FROM [Order] INNER JOIN Detailorder ON [Order].k  odeorder = Detailorder.kodeorder WHERE tanggalorder >= @from AND tanggalorder <= @to GROUP BY MONTH(tanggalorder)", conn);
             cmd.CommandType = CommandType.Text;
             conn.Open();
             cmd.Parameters.AddWithValue("@from", new DateTime(DateTime.Now.Year, DateTime.ParseExact(from, "MMMM", CultureInfo.CurrentCulture).Month, 1));
@@ -96,6 +96,14 @@ namespace laundryifa
 
                 chart1.Series["Pendapatan"].Points.AddXY(bulan, income);
             }
+        }
+
+        private void button1_MouseClick(object sender, MouseEventArgs e)
+        {
+            string from = comboBox1.SelectedItem.ToString();
+            string to = comboBox2.SelectedItem.ToString();
+
+            SqlCommand cmd = new SqlCommand("select month[Order].kodeorder");
         }
     }
 }

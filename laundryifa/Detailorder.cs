@@ -48,14 +48,22 @@ namespace laundryifa
         {
             using (var conn = Properti.getconn())
             {
-                SqlCommand cmd = new SqlCommand("select * from [Detailorder] ", conn);
-                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT detailorder.kodeorder, layanan.namalayanan, detailorder.jumlahunit, detailorder.biaya FROM detailorder JOIN layanan ON detailorder.kodelayanan = layanan.kodelayanan", conn);
                 cmd.CommandType = CommandType.Text;
+                conn.Open();
                 DataTable dt = new DataTable();
                 SqlDataReader dr = cmd.ExecuteReader();
                 dt.Load(dr);
-                conn.Close();
+                
                 dataGridView1.DataSource = dt;
+               
+
+                dataGridView1.Columns["kodeorder"].HeaderText = "Kode Order";
+                dataGridView1.Columns["namalayanan"].HeaderText = "Nama Layanan";
+                dataGridView1.Columns["jumlahunit"].HeaderText = "Jumlah Unit";
+                dataGridView1.Columns["biaya"].HeaderText = "Biaya";
+
+                conn.Close();
             }
                 
         }
@@ -68,7 +76,7 @@ namespace laundryifa
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var row = dataGridView1.CurrentRow.Cells;
-            comboBox1.SelectedValue = row["kodelayanan"].Value.ToString();
+            comboBox1.Text = row["namalayanan"].Value.ToString();
             numericUpDown1.Value  = Convert.ToInt32(row["jumlahunit"].Value.ToString());
 
         }
@@ -203,6 +211,11 @@ namespace laundryifa
         }
 
         private void Detailorder_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
