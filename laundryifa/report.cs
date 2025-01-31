@@ -74,31 +74,27 @@ namespace laundryifa
             DataTable dt = new DataTable(); 
             SqlDataReader dr = cmd.ExecuteReader();
             dt.Load(dr);
-
-            dataGridView1.DataSource = dt.AsEnumerable().Select( d => new 
+            dataGridView1.DataSource = dt.AsEnumerable().Select(d => new
             {
                 Bulan = new DateTime(DateTime.Now.Year, d.Field<int>("Bulan"), 1).ToString("MMMM"),
                 Income = d.Field<int>("Income").ToString("C", CultureInfo.GetCultureInfo("id-ID")),
-            }).ToList();
-                
+            }
+            ).ToList();
+
             chart1.Series.Clear();
             foreach (DataRow row in dt.Rows)
             {
                 string Bulan = new DateTime(DateTime.Now.Year, row.Field<int>("Bulan"), 1).ToString();
                 int Income = row.Field<int>("Income");
-
-                if(chart1.Series.IndexOf("Pendapatan") == -1)
+                
+                if (chart1.Series.IndexOf("Pendapatan") == -1)
                 {
                     chart1.Series.Add("Pendapatan");
                     chart1.Series["Pendapatan"].ChartType = SeriesChartType.Column;
-
-                    
                 }
 
                 chart1.Series["Pendapatan"].Points.AddXY(Bulan, Income);
-            }   
-               
-            
+            }
         }
 
        
