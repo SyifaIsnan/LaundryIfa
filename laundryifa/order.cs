@@ -41,7 +41,21 @@ namespace laundryifa
             comboBox2.ValueMember = "kodepetugas";
             comboBox2.SelectedIndex = -1;
 
+            DataGridViewComboBoxColumn combo = new DataGridViewComboBoxColumn();
+            combo.Name = "Status";
+            combo.DataSource = new string[] { "PENDING", "DICUCI", "DIANTAR/DIJEMPUT" };
+            combo.HeaderText = "Status";
+            combo.DataPropertyName = "Status";
             
+
+            DataGridViewLinkColumn link = new DataGridViewLinkColumn();
+            link.Name = "Pilih Layanan";
+            link.Text = "Pilih Layanan";
+            link.HeaderText = "Pilih Layanan";
+            link.UseColumnTextForLinkValue = true;
+            dataGridView1.Columns.Add(combo);
+            dataGridView1.Columns.Add(link);
+
             conn.Close();
         }
 
@@ -54,49 +68,38 @@ namespace laundryifa
             SqlDataReader dr = cmd.ExecuteReader();
             dt.Load(dr);
             conn.Close();
-            dataGridView1.Columns.Clear();
-            dataGridView1.Rows.Clear();
+            //dataGridView1.Columns.Clear();
+            //dataGridView1.Rows.Clear();
             if (dt.Rows.Count > 0)
             {
-                DataGridViewComboBoxColumn combo = new DataGridViewComboBoxColumn();
-                combo.Name = "Status";
-                combo.DataSource = new string[] { "PENDING", "DICUCI", "DIANTAR/DIJEMPUT" };
-                combo.HeaderText = "Status";
-                combo.DataPropertyName = "Status";
+               
+                //dataGridView1.Columns.Add("kodeorder", "kodeorder");
+                //dataGridView1.Columns.Add("nomortelepon", "nomortelepon");
+                //dataGridView1.Columns.Add("tanggalorder", "tanggalorder");
+                //dataGridView1.Columns.Add("tanggalselesai", "tanggalselesai");
+                //dataGridView1.Columns.Add("biayaantar", "biayaantar");
+                //dataGridView1.Columns.Add("biayajemput", "biayajemput");
+                //dataGridView1.Columns.Add("biayahari", "biayahari");
+                //dataGridView1.Columns.Add("petugasantar", "petugasantar");
+                dataGridView1.DataSource = dt;
+                
 
-                DataGridViewLinkColumn link = new DataGridViewLinkColumn();
-                link.Name = "Pilih Layanan";
-                link.Text = "Pilih Layanan";
-                link.HeaderText = "Pilih Layanan";
-                link.UseColumnTextForLinkValue = true;
-
-                dataGridView1.Columns.Add("kodeorder", "kodeorder");
-                dataGridView1.Columns.Add("nomortelepon", "nomortelepon");
-                dataGridView1.Columns.Add("tanggalorder", "tanggalorder");
-                dataGridView1.Columns.Add("tanggalselesai", "tanggalselesai");
-                dataGridView1.Columns.Add("biayaantar", "biayaantar");
-                dataGridView1.Columns.Add("biayajemput", "biayajemput");
-                dataGridView1.Columns.Add("biayahari", "biayahari");
-                dataGridView1.Columns.Add("petugasantar", "petugasantar");
-                dataGridView1.Columns.Add(combo);
-                dataGridView1.Columns.Add(link);
-
-                foreach (DataRow row in dt.Rows)
-                {
-                    int rowIndex = dataGridView1.Rows.Add();
-                    dataGridView1.Rows[rowIndex].Cells["kodeorder"].Value = row["kodeorder"].ToString();
-                    dataGridView1.Rows[rowIndex].Cells["nomortelepon"].Value = row["nomortelepon"].ToString();
-                    dataGridView1.Rows[rowIndex].Cells["tanggalorder"].Value = row["tanggalorder"].ToString();
-                    dataGridView1.Rows[rowIndex].Cells["tanggalselesai"].Value = row["tanggalselesai"].ToString();
-                    dataGridView1.Rows[rowIndex].Cells["biayaantar"].Value = row["biayaantar"].ToString();
-                    dataGridView1.Rows[rowIndex].Cells["biayajemput"].Value = row["biayajemput"].ToString();
-                    dataGridView1.Rows[rowIndex].Cells["biayahari"].Value = row["biayahari"].ToString();
-                    dataGridView1.Rows[rowIndex].Cells["petugasantar"].Value = row["petugasantar"].ToString();
-                    dataGridView1.Rows[rowIndex].Cells["Status"].Value = row["statusorder"].ToString();
+                //foreach (DataRow row in dt.Rows)
+                //{
+                //    int rowIndex = dataGridView1.Rows.Add();
+                //    dataGridView1.Rows[rowIndex].Cells["kodeorder"].Value = row["kodeorder"].ToString();
+                //    dataGridView1.Rows[rowIndex].Cells["nomortelepon"].Value = row["nomortelepon"].ToString();
+                //    dataGridView1.Rows[rowIndex].Cells["tanggalorder"].Value = row["tanggalorder"].ToString();
+                //    dataGridView1.Rows[rowIndex].Cells["tanggalselesai"].Value = row["tanggalselesai"].ToString();
+                //    dataGridView1.Rows[rowIndex].Cells["biayaantar"].Value = row["biayaantar"].ToString();
+                //    dataGridView1.Rows[rowIndex].Cells["biayajemput"].Value = row["biayajemput"].ToString();
+                //    dataGridView1.Rows[rowIndex].Cells["biayahari"].Value = row["biayahari"].ToString();
+                //    dataGridView1.Rows[rowIndex].Cells["petugasantar"].Value = row["petugasantar"].ToString();
+                //    dataGridView1.Rows[rowIndex].Cells["Status"].Value = row["statusorder"].ToString();
 
 
                     dataGridView1.EditingControlShowing += DataGridView1_EditingControlShowing;
-                }
+                //}
 
 
 
@@ -570,7 +573,7 @@ namespace laundryifa
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            if (e.ColumnIndex == 9 && e.RowIndex >= 0)
+            if (e.ColumnIndex == 1 && e.RowIndex >= 0)
             {
                 string kodeorder = dataGridView1.Rows[e.RowIndex].Cells["kodeorder"].Value.ToString();
                 Detailorder dt = new Detailorder(kodeorder);

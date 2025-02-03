@@ -84,7 +84,7 @@ namespace laundryifa
             chart1.Series.Clear();
             foreach (DataRow row in dt.Rows)
             {
-                string Bulan = new DateTime(DateTime.Now.Year, row.Field<int>("Bulan"), 1).ToString();
+                string Bulan = new DateTime(DateTime.Now.Year, row.Field<int>("Bulan"), 1).ToString("MMMM");
                 int Income = row.Field<int>("Income");
                 
                 if (chart1.Series.IndexOf("Pendapatan") == -1)
