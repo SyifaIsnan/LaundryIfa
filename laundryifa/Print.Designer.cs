@@ -60,6 +60,7 @@
             this.Controls.Add(this.webBrowser1);
             this.Name = "Print";
             this.Text = "Print";
+            this.Load += new System.EventHandler(this.Print_Load);
             this.ResumeLayout(false);
 
         }

@@ -48,6 +48,9 @@ namespace laundryifa
             webBrowser1.DocumentText = html;
         }
 
-        
+        private void Print_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

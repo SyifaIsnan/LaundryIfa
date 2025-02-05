@@ -277,5 +277,10 @@ namespace laundryifa
         {
 
         }
+
+        private void datadetailorder_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
