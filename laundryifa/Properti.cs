@@ -11,11 +11,11 @@ namespace laundryifa
 {
     internal class Properti
     {
-        public static SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-18L8S2S;Initial Catalog=LaundrySyifa;Integrated Security=True;MultipleActiveResultSets=true");
+        public static SqlConnection conn = new SqlConnection(@"Data Source=localhost\MSSQLSERVER01;Initial Catalog=dblaundry;Integrated Security=True");
 
         public static SqlConnection getconn() 
         { 
-            return new SqlConnection(@"Data Source=DESKTOP-18L8S2S;Initial Catalog=LaundrySyifa;Integrated Security=True;MultipleActiveResultSets=true"); 
+            return new SqlConnection(@"Data Source=localhost\MSSQLSERVER01;Initial Catalog=dblaundry;Integrated Security=True"); 
         }
 
         
@@ -51,7 +51,7 @@ namespace laundryifa
 
         public static SqlConnection konek()
         {
-            return new SqlConnection(@"Data Source=DESKTOP-18L8S2S;Initial Catalog=LaundrySyifa;Integrated Security=True;MultipleActiveResultSets=true");
+            return new SqlConnection(@"Data Source=localhost\MSSQLSERVER01;Initial Catalog=dblaundry;Integrated Security=True");
         }
 
         public static bool latihanvalid (Control.ControlCollection container, TextBox kosong = null)

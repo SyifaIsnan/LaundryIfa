@@ -53,6 +53,7 @@
     <Compile Include="biayatambahan.Designer.cs">
       <DependentUpon>biayatambahan.cs</DependentUpon>
     </Compile>
+    <Compile Include="Cek.cs" />
     <Compile Include="datadetailorder.cs">
       <SubType>Form</SubType>
     </Compile>

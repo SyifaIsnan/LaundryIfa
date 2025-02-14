@@ -41,8 +41,10 @@ namespace laundryifa
                     cmd.CommandType = CommandType.Text;
                     conn.Open();
                     cmd.Parameters.AddWithValue("@email", textBox1.Text);
-                    cmd.Parameters.AddWithValue("@password", Properti.enkripsi(textBox2.Text)); 
+                    cmd.Parameters.AddWithValue("@password", Properti.enkripsi(textBox2.Text));
+                    DataTable dt = new DataTable();
                     SqlDataReader dr = cmd.ExecuteReader();
+                    
                     if (dr.Read())
                     {
                         this.Hide();    
@@ -54,7 +56,7 @@ namespace laundryifa
                     {
                         MessageBox.Show("User tidak ditemukan!");
                     }
-                    cmd.ExecuteNonQuery();
+                    
                     conn.Close();
                 }
 
